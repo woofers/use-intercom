@@ -8,19 +8,19 @@ TypeScript & React Intercom SDK
 **pnpm**
 
 ```pnpm
-pnpm add use-app-badge
+pnpm add use-intercom
 ```
 
 **Yarn**
 
 ```yarn
-yarn add use-app-badge
+yarn add use-intercom
 ```
 
 **npm**
 
 ```npm
-npm install use-app-badge
+npm install use-intercom
 ```
 
 ## Usage
