@@ -1,0 +1,36 @@
+{
+  "name": "use-intercom",
+  "version": "0.1.0",
+  "description": "TypeScript & React Intercom SDK",
+  "main": "dist/index.js",
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc --p .",
+    "build": "bunchee --minify",
+    "lint": "biome lint",
+    "format": "biome format --write"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "bunchee": "^6.3.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "keywords": ["intercom", "react"],
+  "author": "",
+  "license": "MIT"
+}
