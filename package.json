@@ -2,9 +2,10 @@
   "name": "use-intercom",
   "version": "0.1.0",
   "description": "TypeScript & React Intercom SDK",
-  "main": "dist/index.js",
   "type": "module",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -30,7 +31,19 @@
   "peerDependencies": {
     "react": ">=18"
   },
+  "files": ["dist", "LICENSE", "README.md"],
   "keywords": ["intercom", "react"],
-  "author": "",
-  "license": "MIT"
+  "author": "Jaxson Van Doorn <jaxson.vandoorn@gmail.com>",
+  "license": "MIT",
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
+  "bugs": {
+    "url": "https://github.com/woofers/use-intercom/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woofers/use-intercom.git"
+  }
 }
