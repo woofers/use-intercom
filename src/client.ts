@@ -26,7 +26,30 @@ declare global {
   }
 }
 
-type Regions = 'us' | 'eu' | 'ap'
+type Regions = 'us' | 'eu' | 'au'
+
+type CompanyId =
+  | {
+      id: string
+    }
+  | { company_id: string }
+
+type Company = CompanyId & {
+  name: string
+  created_at?: string
+  remote_created_at?: string
+  plan?: string
+  monthly_spend?: number
+  user_count?: number
+  size?: number
+  website?: string
+  industry?: string
+}
+
+type Avatar = {
+  type: string
+  image_url: string
+}
 
 type IntercomSettings = MinimumBootArgs & {
   phone?: string
@@ -37,10 +60,10 @@ type IntercomSettings = MinimumBootArgs & {
   utm_medium?: string
   utm_source?: string
   utm_term?: string
-  avatar?: any
+  avatar?: Avatar
   user_hash?: string
-  company?: any
-  companies?: [any]
+  company?: Company
+  companies?: Company[]
   page_title?: string
   custom_launcher_selector?: string
   alignment?: string
@@ -55,7 +78,7 @@ type IntercomSettings = MinimumBootArgs & {
 
 export type IntercomLoaderSettings = IntercomSettings & {
   region?: Regions
-} & Dict
+} 
 
 type MinimumBootArgs = UserArgs & {
   app_id: string
@@ -67,9 +90,7 @@ type UserArgs = {
   created_at?: number
   name?: string
   user_id?: string
-} & Dict
-
-type Dict = { [key: string]: any }
+}
 
 type OnCallback = (callback: Function) => void
 
@@ -122,12 +143,6 @@ const events = [
   'showConversation'
 ] as const
 
-const regions = {
-  us: 'https://api-iam.intercom.io',
-  eu: 'https://api-iam.eu.intercom.io',
-  ap: 'https://api-iam.au.intercom.io'
-}
-
 const scriptElementId = '_intercom_npm_loader'
 const addWidgetToPage = () => {
   const d = document
@@ -149,9 +164,10 @@ const init = ({ region, ...props }: IntercomLoaderSettings) => {
   }
   const w = window
   const ic = w.Intercom
+  const domainRegion = ['eu', 'au'].includes(region) ? `.${region}.` : '.'
   const config = {
     ...props,
-    api_base: region[region in regions ? region : 'us']
+    api_base: `https://api-iam${domainRegion}intercom.io`
   }
   w.intercomSettings = config
   if (typeof ic === 'function') {

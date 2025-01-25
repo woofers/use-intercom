@@ -29,6 +29,6 @@ const makeSubscribe = (props: IntercomProps) => (_: () => void) => {
 
 export const useIntercom = (props: IntercomProps) => {
   const subscribe = useMemo(() => makeSubscribe(props), [props])
-  const client = useSyncExternalStore(subscribe, getSnapshop)
+  const client = useSyncExternalStore(subscribe, getSnapshop, getSnapshop)
   return client
 }
