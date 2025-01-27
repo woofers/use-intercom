@@ -53,7 +53,7 @@ const addWidgetToPage = () => {
   if (d.getElementById(scriptElementId)) {
     return
   }
-  const s = document.createElement('script')
+  const s = d.createElement('script')
   s.type = 'text/javascript'
   s.async = true
   s.id = scriptElementId

@@ -82,7 +82,7 @@ export type IntercomClient = {
   onHide: OnCallback
   onShow: OnCallback
   onUnreadCountChange: OnCallback
-  trackEvent: (...args: any) => void
+  trackEvent: (...args: unknown[]) => void
   getVisitorId: () => void
   startTour: (tourId: string) => void
   showArticle: (articleId: string) => void
