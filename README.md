@@ -2,7 +2,6 @@
 
 TypeScript & React Intercom SDK
 
-
 ## Installation
 
 **pnpm**
@@ -37,7 +36,8 @@ const App = () => {
 }
 ```
 
-Or with auto-boot disabled
+Or with auto-boot disabled.  This means you will need to call `client.boot()` to
+show the Intercom widget and optionally `client.destory()` to remove the script tag.
 
 ```tsx
 import { useEffect } from 'react'
@@ -60,13 +60,14 @@ import { client } from 'use-intercom'
 
 const settings = {
     region: 'us',
-    app_id: 123,
+    app_id: '123'
 }
 
 // Startup
-client.init(settings)
-client.boot(settings)
+client.init(settings) // Add script tag
+client.boot(settings) // Show Intercom
 
 // Shutdown
-client.shutdown()
+client.shutdown() // Hide Intercom
+client.destroy() // Remove script tag
 ```

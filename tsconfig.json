@@ -29,6 +29,6 @@
     "strict": false,
     "baseUrl": "./src"
   },
-  "include": ["index.d.ts", "global.d.ts", "src/**/*.ts", "src/**/*.tsx"],
+  "include": ["index.d.ts", "src/global.d.ts", "src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "lib"]
 }
