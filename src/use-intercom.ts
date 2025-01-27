@@ -12,15 +12,18 @@ export type IntercomProps = IntercomLoaderSettings & {
   auto_boot?: boolean
 }
 
-const getSnapshop = () => client as unknown as IntercomActions
+let intercomClient = client as unknown as IntercomActions
+
+const getSnapshot = () => intercomClient
 
 const makeSubscribe = (props: IntercomProps) => (_: () => void) => {
   const autoBoot = 'auto_boot' in props ? props['auto_boot'] : true
-  client.init(props)
-  if (autoBoot) client.boot(props)
+  intercomClient = { ...client, boot: () => client.boot(props) }
+  ;(intercomClient as unknown as IntercomClient).init(props)
+  if (autoBoot) intercomClient.boot()
   return () => {
-    client.shutdown()
-    if (autoBoot) client.destroy()
+    intercomClient.shutdown()
+    if (autoBoot) intercomClient.destroy()
   }
 }
 
@@ -42,7 +45,7 @@ export const useIntercom = ({
       }),
     [app_id, region, api_base]
   )
-  const client = useSyncExternalStore(subscribe, getSnapshop, getSnapshop)
+  const client = useSyncExternalStore(subscribe, getSnapshot, getSnapshot)
   useEffect(() => {
     if (!mounted.current) {
       mounted.current = true
